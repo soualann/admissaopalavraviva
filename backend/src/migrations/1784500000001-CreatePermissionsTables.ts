@@ -9,7 +9,7 @@ export class CreatePermissionsTables1784500000001 implements MigrationInterface 
         \`id\` INT UNSIGNED NOT NULL AUTO_INCREMENT,
         \`code\` VARCHAR(60) NOT NULL COMMENT 'formato recurso:ação, ex.: finance:write',
         \`resource\` VARCHAR(30) NOT NULL,
-        \`action\` VARCHAR(20) NOT NULL COMMENT "'read' | 'write'",
+        \`action\` VARCHAR(20) NOT NULL COMMENT 'read | write',
         \`description\` VARCHAR(255) NULL,
         \`created_at\` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
         \`updated_at\` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
