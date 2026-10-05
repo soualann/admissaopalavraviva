@@ -6,7 +6,7 @@ export type { AppRuntimeConfigPatch } from './runtime-config';
 
 export const environment = {
   production: true,
-  apiUrl: 'https://associated-shandee-soualann-ea9b33c9.koyeb.app',
+  apiUrl: 'https://associated-shandee-soualann-ea9b33c9.koyeb.app/api',
   wsUrl: 'https://associated-shandee-soualann-ea9b33c9.koyeb.app',
   version: APP_VERSION,
   builtAt: APP_BUILT_AT,
