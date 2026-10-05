@@ -6,9 +6,8 @@ export type { AppRuntimeConfigPatch } from './runtime-config';
 
 export const environment = {
   production: true,
-  apiUrl: '/api',
-  /** Origem do Socket.IO. Same-origin (reverse proxy): ''; senão origem do host da API. */
-  wsUrl: '',
+  apiUrl: 'https://associated-shandee-soualann-ea9b33c9.koyeb.app',
+  wsUrl: 'https://associated-shandee-soualann-ea9b33c9.koyeb.app',
   version: APP_VERSION,
   builtAt: APP_BUILT_AT,
   /** Intervalo de polling para nova versão (ms). 0 = desabilitado. */
