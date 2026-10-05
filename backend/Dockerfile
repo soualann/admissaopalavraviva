@@ -1,7 +1,25 @@
 # syntax=docker/dockerfile:1
-# Empacota artefatos já compilados no host (dist/).
-# Preferido no Windows/Docker Desktop — evita nest build dentro do container.
 
+# =========================
+# BUILD
+# =========================
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY backend/package.json backend/package-lock.json ./
+
+RUN --mount=type=cache,target=/root/.npm \
+  npm ci
+
+COPY backend/ ./
+
+RUN npm run build
+
+
+# =========================
+# PRODUCTION
+# =========================
 FROM node:20-alpine AS production
 
 RUN apk add --no-cache curl netcat-openbsd
@@ -12,11 +30,14 @@ ENV NODE_ENV=production
 ENV TYPEORM_USE_DIST=1
 
 COPY backend/package.json backend/package-lock.json ./
+
 RUN --mount=type=cache,target=/root/.npm \
   npm ci --omit=dev
 
-COPY backend/dist ./dist
+COPY --from=builder /app/dist ./dist
+
 COPY deploy/scripts/backend-entrypoint.sh /entrypoint.sh
+
 RUN sed -i 's/\r$//' /entrypoint.sh \
   && chmod +x /entrypoint.sh \
   && mkdir -p /app/uploads \
